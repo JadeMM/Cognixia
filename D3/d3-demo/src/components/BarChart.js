@@ -12,30 +12,45 @@ export default class BarChart extends React.Component {
         }
     }
 
+    //execute d3 code
     componentDidMount = () => {
         this.drawBarChart();
     }
 
+    //draw bar chart
     drawBarChart = () => {
         const {data, canvasHeight, canvasWidth, scale} = this.state;
 
+        //create canvas
         const svgCanvas = d3.select(this.refs.canvas)
             .append("svg")
             .attr("width", canvasWidth)
             .attr("height", canvasHeight)
             .style("border", "1px solid black")
         
+        //for each rectangle in canvas, attach data
+        //for each data, we append a rect of 40 x data*20 and give it a x,y point
         svgCanvas.selectAll("rect")
             .data(data)
             .enter()
                 .append("rect")
                 .attr("width", 40)
-                .attr("height", (datapoint) => datapoint * 20)
-                .attr("fill", "orange")
+                .attr("height", (datapoint) => datapoint * scale)
+                .attr("fill", "steelBlue")
                 .attr("x", (datapoint, iteration) => iteration * 45)
-                .attr("y", (datapoint) => canvasHeight - datapoint * scale)
+                .attr("y", (datapoint) => canvasHeight - (datapoint * scale))
+
+        svgCanvas.selectAll("text")
+            .data(data)
+            .enter()
+                .append("text")
+                .style("fill", "white")
+                .attr("x", (datapoint, i) => i * 45 + 14)
+                .attr("y", (datapoint) => canvasHeight - (datapoint * scale) + 20)
+                .text(datapoint => datapoint)
+
     }
     render(){
-        return <div ref='canvas'/>
+        return <div className='viewHolder' ref='canvas'/>
     } 
 }
