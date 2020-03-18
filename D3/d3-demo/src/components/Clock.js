@@ -91,7 +91,7 @@ export default class Clock extends React.Component {
         const scale = d3.scaleLinear().domain([1, 13]).range([0, 2 * pi]);
 
         const clockNumbers = canvas.append("g")
-            .attr("transform", `translate(${this.state.canvasWidth/2},${this.state.canvasHeight/2})`)
+            .attr("transform", `translate(${canvasWidth/2},${canvasHeight/2})`)
 
         const arc = d3.arc()
             .innerRadius(canvasHeight/2 - 30)

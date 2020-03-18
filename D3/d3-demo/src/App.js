@@ -5,6 +5,7 @@ import BarChart from './components/BarChart';
 import TempDisplay from './components/TempDisplay';
 import ThreeLittleCircles from './components/ThreeLittleCircles';
 import Clock from './components/Clock';
+import Map from './components/Map';
 
 
 class App extends React.Component {
@@ -25,6 +26,8 @@ class App extends React.Component {
         return <ThreeLittleCircles/>
       case 4:
         return <Clock/>
+      case 5:
+        return <Map/>
       default:
         return <Clock/>
     }
@@ -37,6 +40,7 @@ class App extends React.Component {
         <button onClick={() => this.setState({view: 2})}>Bar Chart</button>
         <button onClick={() => this.setState({view: 3})}>Circles</button>
         <button onClick={() => this.setState({view: 4})}>Clock</button>
+        <button onClick={() => this.setState({view: 5})}>Map</button>
         {this.showView()}
       </div>
     )
