@@ -1,10 +1,29 @@
-.App {
-  text-align: center;
+html, body {
+    height: 800;
+}
+
+div {
+  border: 1px solid black;
+}
+
+.outerDiv {
+  background-color: rgb(255, 255, 234) ;
+}
+
+.pageContainer {
+  padding: 50px;
+  border: 1px solid blue;
+  height: 700px;
 }
 
 .navli {
   display: inline-block;
   padding: 10px;
+}
+
+nav {
+  background-color: white;
+  overflow: hidden;
 }
 
 a {
@@ -18,4 +37,19 @@ form {
   border: 1px;
   border-color: gray;
   border-style: dashed;
+}
+
+button {
+  box-shadow: none;
+  background-color: white;
+  border-radius: 5px;
+  border: none;
+  width: 130px;
+  padding: 10px;
+}
+
+button:hover {
+  background-color: brown;
+  color: white;
+  box-shadow: none;
 }

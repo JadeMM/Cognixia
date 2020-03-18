@@ -1,0 +1,35 @@
+html, body { height: 100%; width: 100%; margin: 0; }
+
+.page {
+    border: none;
+    overflow: hidden;
+}
+
+.right {
+    box-sizing: border-box;
+    background-color: brown;
+    color: white;
+    padding: 20px;
+    display: inline-block;
+    width: 40%;
+    border: none;
+    height: 100%;
+}
+
+.fill {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+
+.left {
+    float: right;
+    width: 60%;
+    border: none;
+}
+
+img {
+    width: 100%;
+}

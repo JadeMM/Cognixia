@@ -17,23 +17,23 @@ export default class App extends React.Component {
     render() {
       return (
         <Router>
-          <div>
+          <div className='outerDiv'>
             <nav>
               <ul>
                 <li className='navli'>
-                  <button><Link to="/">Home</Link></button>
+                  <Link to="/"><button>Home</button></Link>
                 </li>
                 <li className='navli'>
-                  <button><Link to="/base">Pizza Base</Link></button>
+                  <Link to="/base"><button>Pizza Base</button></Link>
                 </li>
                 <li className='navli'>
-                  <button><Link to="/toppings">Pizza Toppings</Link></button>
+                  <Link to="/toppings"><button>Pizza Toppings</button></Link>
                 </li>
                 <li className='navli'>
-                  <button><Link to="/customer">Customer Info</Link></button>
+                  <Link to="/customer"><button>Customer Info</button></Link>
                 </li>
                 <li className='navli'>
-                  <button><Link to="/review">Review Order</Link></button>
+                  <Link to="/review"><button>Review Order</button></Link>
                 </li>
               </ul>
             </nav>
