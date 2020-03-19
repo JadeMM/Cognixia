@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import { updateBase } from '../actions'
 import { getData } from '../selectors';
-import './PizzaBase.css'
+import './css/PizzaBase.css'
 
 class PizzaBase extends React.Component {
 
