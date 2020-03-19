@@ -8,26 +8,36 @@ class ReviewOrder extends React.Component {
     render() {
         const data = this.props.data;
         return (
-            <form>
-                <h1>Review Order</h1>
-                <h3>Pizza: </h3>
-                <p>Crust: {data.pizza.dough}</p>
-                <p>Sauce: {data.pizza.sauce}</p>
-                <p>Toppings: </p><br/>
-                <ul>
-                {data.pizza.toppings.map(item => {
-                    return <li>{item}</li>
-                })} 
-                </ul>
+            <div className='pageHolder'>
+                <h3>Review Order</h3>
+                <form>
+                    <h4>Order </h4>
+                    <div className='userFields'>
+                        <p className='reviewText'><b>Pizza Type</b> {data.pizza.dough}</p>
+                        <p className='reviewText'><b>Sauce Level</b> {data.pizza.sauce}</p>
+                        <p className='reviewText'><b>Toppings</b> </p>
+                        <ul className='ingList'>
+                        {data.pizza.toppings.map(item => {
+                            return <li>{item}</li>
+                        })} 
+                        </ul>
+                    </div>
 
-                <h3>Customer Information</h3>
-                <p>{data.user.name}</p>
-                <p>{data.user.email}</p>
-                <p>{data.user.address}</p>
-                <p>{data.user.city}, {data.user.state} {data.user.zip}</p>
-                <p>{data.user.phone}</p>
+                    <h4>Customer Information</h4>
+                    <div className='userFields'>
+                        <p className='reviewText'><b>Name</b> {data.user.name}</p>
+                        <p className='reviewText'><b>Email</b> {data.user.email}</p>
+                        <p className='reviewText'><b>Phone</b> {data.user.phone}</p>
+                        <p className='reviewText'><b>Address</b></p>
+                        <ul className='ingList'>
+                            <li><p className='reviewText'>&nbsp;{data.user.address}</p></li>
+                            <li><p className='reviewText'>&nbsp;{data.user.city} {data.user.state !== '' ? ',' : ''} {data.user.state} {data.user.zip}</p></li>
+                        </ul>
+                        
+                    </div>
 
-            </form>
+                </form>
+            </div>
         )
     }
 }

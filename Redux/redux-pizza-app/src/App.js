@@ -13,27 +13,66 @@ import UserForm from './components/UserForm';
 
 //Router to navigate between pages
 export default class App extends React.Component {
+    constructor() {
+      super();
+      this.state = {
+        home: 'active',
+        base: 'inactive',
+        top: 'inactive',
+        info: 'inactive',
+        review: 'inactive',
+      }
+    }
+
+    isActive = (e) => {
+      return this.state[e.target.id];
+    }
+
+    handleClick = (e) => {
+      this.setState({
+        home: 'inactive',
+        base: 'inactive',
+        top: 'inactive',
+        info: 'inactive',
+        review: 'inactive'
+      })
+
+      //handle page change from child screen
+      let page = e.target === undefined ? 'base' : e.target.id;
+
+      if(page === 'home') {
+        this.setState({home: 'active'})
+      } else if(page === 'base') {
+        this.setState({base: 'active'})
+      } else if(page === 'top') {
+        this.setState({top: 'active'})
+      } else if(page === 'info') {
+        this.setState({info: 'active'})
+      } else {
+        this.setState({review: 'active'})
+      }
+    }
 
     render() {
       return (
         <Router>
           <div className='outerDiv'>
             <nav>
-              <ul>
+              <ul className='navlst'>
                 <li className='navli'>
-                  <Link to="/"><button>Home</button></Link>
+                  <Link to="/"><button id='home' className={this.state.home} onClick={this.handleClick}>Home</button></Link>
                 </li>
                 <li className='navli'>
-                  <Link to="/base"><button>Pizza Base</button></Link>
+                  <Link to="/base"><button id='base' className={this.state.base} onClick={this.handleClick}>Pizza Base</button></Link>
                 </li>
                 <li className='navli'>
-                  <Link to="/toppings"><button>Pizza Toppings</button></Link>
+                  <Link to="/toppings"><button id='top' className={this.state.top} onClick={this.handleClick}>Pizza Toppings</button></Link>
                 </li>
                 <li className='navli'>
-                  <Link to="/customer"><button>Customer Info</button></Link>
+                  <Link to="/customer"><button id='info' className={this.state.info} onClick={this.handleClick}>Customer Info</button></Link>
                 </li>
                 <li className='navli'>
-                  <Link to="/review"><button>Review Order</button></Link>
+                  <Link to="/review"><button id='review' className={this.state.review} onClick={this.handleClick}>Review Order</button></Link>
                 </li>
               </ul>
             </nav>
@@ -52,7 +91,7 @@ export default class App extends React.Component {
                 <PizzaBase />
               </Route>
               <Route path="/">
-                <Home />
+                <Home handleClick={this.handleClick}/>
               </Route>
             </Switch>
           </div>

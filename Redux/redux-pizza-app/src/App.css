@@ -2,23 +2,23 @@ html, body {
     height: 800;
 }
 
-div {
+/* div {
   border: 1px solid black;
-}
+} */
 
 .outerDiv {
-  background-color: rgb(255, 255, 234) ;
-}
-
-.pageContainer {
-  padding: 50px;
-  border: 1px solid blue;
-  height: 700px;
+  background-color: white ;
 }
 
 .navli {
   display: inline-block;
-  padding: 10px;
+  margin: 0;
+}
+
+.navlst {
+  margin: 0;
+  margin-top: 10px;
+  padding: 0px 10px;
 }
 
 nav {
@@ -31,25 +31,27 @@ a {
   color: black;
 }
 
-form {
-  margin: 20px;
-  padding: 10px;
-  border: 1px;
-  border-color: gray;
-  border-style: dashed;
-}
-
 button {
   box-shadow: none;
   background-color: white;
-  border-radius: 5px;
+  border-radius: 5px 5px 0px 0px;
   border: none;
   width: 130px;
-  padding: 10px;
+  padding: 10px 5px;
+  font-size: 15px;
+}
+
+.active {
+  background-color: brown;
+  color: white;
 }
 
 button:hover {
-  background-color: brown;
+  background-color: rgb(117, 30, 30);
   color: white;
   box-shadow: none;
+}
+
+button:focus {
+  outline: 0;
 }

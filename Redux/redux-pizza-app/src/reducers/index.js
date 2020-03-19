@@ -12,8 +12,8 @@ const initialState = {
             phone: ''
         },
         pizza: {
-            sauce: 'normal',
-            dough: 'classic',
+            sauce: 'Normal',
+            dough: 'Classic',
             toppings: []
         }
 }

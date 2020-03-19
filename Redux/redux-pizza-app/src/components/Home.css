@@ -1,35 +1,44 @@
-html, body { height: 100%; width: 100%; margin: 0; }
-
 .page {
     border: none;
     overflow: hidden;
-}
-
-.right {
-    box-sizing: border-box;
-    background-color: brown;
-    color: white;
-    padding: 20px;
-    display: inline-block;
-    width: 40%;
-    border: none;
     height: 100%;
 }
 
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.right {
+    background-color: brown;
+    width: 40%;
+    box-sizing: border-box;
+    color: white;
+    vertical-align: top;
+    text-align: center;
+    padding: 70px 0px;
+}
+
 .fill {
-    height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: none;
+    padding: 70px 0px;
+}
+
+.orderButton {
+  border-radius: 5px;
+}
+.orderButton:hover {
+    background-color: rgb(117, 30, 30);
+    color: white;
+    box-shadow: none;
 }
 
 .left {
-    float: right;
-    width: 60%;
-    border: none;
+    padding: 0;
 }
 
 img {
     width: 100%;
+    display: block;
 }
