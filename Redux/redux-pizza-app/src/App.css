@@ -46,6 +46,10 @@ button {
   color: white;
 }
 
+.active:hover {
+  background-color: brown;
+}
+
 button:hover {
   background-color: rgb(117, 30, 30);
   color: white;

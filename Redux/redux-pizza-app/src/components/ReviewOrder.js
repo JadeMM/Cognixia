@@ -31,7 +31,7 @@ class ReviewOrder extends React.Component {
                         <p className='reviewText'><b>Address</b></p>
                         <ul className='ingList'>
                             <li><p className='reviewText'>&nbsp;{data.user.address}</p></li>
-                            <li><p className='reviewText'>&nbsp;{data.user.city} {data.user.state !== '' ? ',' : ''} {data.user.state} {data.user.zip}</p></li>
+                            <li><p className='reviewText'>&nbsp;{data.user.city}{data.user.state !== '' ? ',' : ''} {data.user.state} {data.user.zip}</p></li>
                         </ul>
                         
                     </div>
