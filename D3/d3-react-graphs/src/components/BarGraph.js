@@ -3,11 +3,9 @@ import { alphabetData } from '../constants';
 import * as d3 from 'd3';
 
 export default class BarGraph extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            canvasHeight : 400,
-            canvasWidth : 600,
             sideMargin: 30,
             bottomMargin: 30
         }
@@ -27,7 +25,7 @@ export default class BarGraph extends React.Component {
         //const dataName = this.getData('name');
         const scale = d3.scaleLinear()
                   .domain([d3.min(data), d3.max(data)])
-                  .range([this.state.canvasHeight, this.state.bottomMargin]);
+                  .range([this.props.canvasHeight, this.state.bottomMargin]);
 
         // Add scales to axis
         return d3.axisLeft().scale(scale);
@@ -37,7 +35,7 @@ export default class BarGraph extends React.Component {
         const dataName = this.getData('name');
         const scale = d3.scaleLinear()
                   .domain([0, 26])
-                  .range([this.state.sideMargin, this.state.canvasWidth]);
+                  .range([this.state.sideMargin + 10, this.props.canvasWidth + 10]);
 
         // Add scales to axis
         return (
@@ -48,7 +46,8 @@ export default class BarGraph extends React.Component {
     }
 
     drawBarGraph = () => {
-        const {canvasHeight, canvasWidth, sideMargin, bottomMargin} = this.state;
+        const { sideMargin, bottomMargin} = this.state;
+        const { canvasHeight, canvasWidth} = this.props;
 
         const canvas = d3.select(this.refs.graphHolder)
             .append("svg")
@@ -57,13 +56,15 @@ export default class BarGraph extends React.Component {
             .style('border', '1px solid black');
         
         const data = this.getData('value');
-        const scale = (canvasHeight-bottomMargin)/d3.max(data);
+        const scale = (canvasHeight-bottomMargin)/d3.max(data);const colorScale = d3.scaleLinear()
+            .domain([0, 25])
+            .range([0,1]);
        
         canvas.append('g')
-                .attr("fill", "orange")
             .selectAll('rect')
             .data(data)
             .join('rect')
+                .attr("fill", (d,i) => d3.interpolateViridis(colorScale(i)))
                 .attr("width", (canvasWidth-sideMargin)/data.length - 2)
                 .attr("height", (datapoint) => datapoint * scale)
                 .attr("x", (datapoint, iteration) => iteration * ((canvasWidth-sideMargin)/data.length) + sideMargin)

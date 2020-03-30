@@ -1,8 +1,8 @@
 import React from 'react';
-import { alphabetData } from '../constants';
+import { alphabetData as data} from '../constants';
 import * as d3 from 'd3';
 
-export default class BarGraph extends React.Component {
+export default class DonutChart extends React.Component {
     constructor(props) {
         super();
         this.state = {
@@ -11,37 +11,16 @@ export default class BarGraph extends React.Component {
     }
 
     componentDidMount = () => {
-        const data = this.alterData();
-        this.drawChart(data);
+        this.drawChart();
     }
 
-    alterData = () => {
-        let lessThan1 = 0;
-        let count = 0;
-        const changeData = alphabetData.map((item) => {
-            if(item.value < 0.01) {
-                lessThan1 += item.value;
-                count++;
-                return null
-            } else {
-                return item;
-            }
-        })
-        changeData[changeData.length] = {name: '', value: lessThan1/count};
-
-        const alteredData = changeData.filter(item => {
-            return item !== null? true : false;
-        })
-        return alteredData;
-    }
-
-    getData = (data, type) => {
+    getData = (type) => {
         return data.map(item => {
             return item[type];
         })
     }
 
-    drawChart = (data) => {
+    drawChart = () => {
         const {height, width} = this.props;
         const {radius} = this.state;
 
@@ -54,14 +33,12 @@ export default class BarGraph extends React.Component {
                 .attr("transform", `translate(${width/2},${height/2})`)
 
         const pi = Math.PI;
-        const dataValues = this.getData(data, 'value');
-        const dataLabels = this.getData(data, 'name');
-        const colorScale = d3.scaleLinear()
-            .domain([0, 25])
-            .range([0,1]);
+        const dataValues = this.getData('value');
+        const dataLabels = this.getData('name');
+        const colorScale = d3.scaleOrdinal(d3.schemeCategory10)
         
         var arc = d3.arc()             
-            .innerRadius(0)
+            .innerRadius(radius - radius/4)
             .outerRadius(radius)
             .startAngle(data => data.startAngle)
             .endAngle(data => data.endAngle)
@@ -73,7 +50,7 @@ export default class BarGraph extends React.Component {
             .enter()
                 .append("path")
                 .attr("d", arc)
-                .attr("fill", (d,i) => d3.interpolateRainbow(colorScale(i))); 
+                .attr("fill", (d,i) => colorScale(i)); 
 
         canvas.selectAll('arcs')
             .data(pie(dataValues))

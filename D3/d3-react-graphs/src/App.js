@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import BarGraph from './components/BarGraph';
 import PieChart from './components/PieChart';
+import DonutChart from './components/DonutChart';
 
 class App extends React.Component {
   constructor() {
@@ -17,11 +18,13 @@ class App extends React.Component {
   updateView = () => {
     switch(this.state.page) {
       case 'BarGraph':
-        return <BarGraph/>
+        return <BarGraph canvasWidth={this.state.width} canvasHeight={this.state.height}/>
       case 'PieChart':
         return <PieChart width={this.state.width} height={this.state.height}/>
+      case 'DonutChart':
+        return <DonutChart width={this.state.width} height={this.state.height}/>
       default:
-        return <PieChart width={this.state.width} height={this.state.height}/>
+        return <BarGraph canvasWidth={this.state.width} canvasHeight={this.state.height}/>
     }
   }
 
